@@ -3,7 +3,7 @@
   <% @cart_items.each do |cart_item| %>
   <tr>
     <td>
-      <%= cart_item.item.name %>
+      <%= link_to cart_item.item.name, item_path(cart_item.item) %>
     </td>
     <td>
       <%= cart_item.item.price %>税抜き
