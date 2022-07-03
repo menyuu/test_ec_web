@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :items, only: [:index, :show]
-    resources :cart_items, only: [:index, :create]
+    resources :cart_items, only: [:index, :create, :destroy]
+    post "cart_items/cancel", as: "cancel"
   end
 
   devise_for :admins,skip: [:registrations, :passwords], controllers: {
