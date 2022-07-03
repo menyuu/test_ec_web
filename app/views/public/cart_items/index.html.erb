@@ -1,0 +1,23 @@
+<table>
+  <% @cart_items.each do |cart_item| %>
+  <tr>
+    <td>
+      <%= cart_item.item.name %>
+    </td>
+    <td>
+      <%= cart_item.item.price %>税抜き
+      <%= cart_item.item.price.class %>
+      <%= number_to_currency(cart_item.item.with_tax_price, unit: "", precision: 0, format: "%u%n") %>
+      <%= number_to_currency(cart_item.item.with_tax_price, unit: "", precision: 0, format: "%u%n").class %>
+    </td>
+    <td>
+      <%= cart_item.amount %>個<%= cart_item.amount.class %>
+    </td>
+    <td>
+      <%= number_to_currency(cart_item.subtotal, unit: "", precision: 0, format: "%u%n") %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= number_to_currency(@total_price, unit: "", precision: 0, format: "%u%n") %>

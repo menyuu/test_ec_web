@@ -1,0 +1,12 @@
+<h1><%= @item.id %>のshow</h1>
+<%= @item.name %>
+<%= @item.introduction %>
+<%= @item.price %>
+
+<h4>カート機能テスト</h4>
+
+<%= form_with model: CartItem.new, url: cart_items_path do |f| %>
+  <%= f.hidden_field :item_id, value: @item.id %>
+  <%= f.select :amount, *[1..3] %>個
+  <%= f.submit "送信" %>
+<% end %>
