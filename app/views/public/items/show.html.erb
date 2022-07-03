@@ -7,6 +7,6 @@
 
 <%= form_with model: CartItem.new, url: cart_items_path do |f| %>
   <%= f.hidden_field :item_id, value: @item.id %>
-  <%= f.select :amount, *[1..3] %>個
+  <%= f.select :amount, *[1..5] %>個
   <%= f.submit "送信" %>
 <% end %>
