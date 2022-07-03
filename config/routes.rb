@@ -4,6 +4,12 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+
+  scope module: :public do
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :create]
+  end
+
   devise_for :admins,skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
