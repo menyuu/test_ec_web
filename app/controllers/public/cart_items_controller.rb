@@ -9,9 +9,9 @@ class Public::CartItemsController < ApplicationController
     # binding.pry
     # item = Item.find_by(id: cart_item_params[:item_id])
     # customer = CartItem.find_by(customer_id: current_customer, item_id: cart_item_params[:item_id])
-    item = CartItem.find_by(customer_id: current_customer, item_id: cart_item_params[:item_id])
-    if item
-      cart_item = item.update(amount: item.amount + cart_item_params[:amount].to_i)
+    @item = CartItem.find_by(customer_id: current_customer, item_id: cart_item_params[:item_id])
+    if @item
+      cart_item = @item.update(amount: @item.amount + cart_item_params[:amount].to_i)
       redirect_to cart_items_path
     else
       cart_item = current_customer.cart_items.new(cart_item_params)

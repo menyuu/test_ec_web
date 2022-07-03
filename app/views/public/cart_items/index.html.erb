@@ -12,7 +12,11 @@
       <%= number_to_currency(cart_item.item.with_tax_price, unit: "", precision: 0, format: "%u%n").class %>
     </td>
     <td>
-      <%= cart_item.amount %>個<%= cart_item.amount.class %>
+      <%= form_with model: CartItem.new, url: cart_items_path do |f| %>
+        <%= f.hidden_field :item_id, value: cart_item.item_id %>
+        <%= f.select :amount, *[1..99], { include_blank: true, selected: cart_item.amount } %>個
+        <%= f.submit "追加" %>
+      <% end %>
     </td>
     <td>
       <%= number_to_currency(cart_item.subtotal, unit: "", precision: 0, format: "%u%n") %>
