@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :create, :destroy]
     post "cart_items/cancel", as: "cancel"
+    get "orders/completion", as: "completion"
+    get "orders/:id/confirmation" => "orders#confirmation", as: "confirmation"
+    resources :orders, only: [:new, :index, :show, :create]
   end
 
   devise_for :admins,skip: [:registrations, :passwords], controllers: {
