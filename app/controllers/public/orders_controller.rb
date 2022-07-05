@@ -34,9 +34,24 @@ class Public::OrdersController < ApplicationController
   end
 
   def completion
+    @order = Order.new
+    redirect_to items_path
   end
 
   def create
+    @order = current_customer.orders.new(order_confirmation_params)
+    cart_items = current_customer.cart_items.all
+    @order.save
+    cart_items.each do |cart_item|
+      order_item = OrderItem.new
+      order_item.item_id = cart_item.item_id
+      order_item.order_id = @order.id
+      order_item.amount = cart_item.amount
+      order_item.price = cart_item.item.price
+      order_item.save
+    end
+    cart_items.destroy_all
+    render :completion
   end
 
   private
@@ -44,5 +59,6 @@ class Public::OrdersController < ApplicationController
     params.require(:order).permit(:payment_method, :code, :address, :name)
   end
   def order_confirmation_params
-    params.require(:order).permit(:)
+    params.require(:order).permit(:name, :address, :code, :total_price, :payment_method)
+  end
 end

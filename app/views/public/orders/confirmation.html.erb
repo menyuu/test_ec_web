@@ -43,12 +43,10 @@
 〒<%= @order.code %> <%= @order.address %><br>
 <%= @order.name %>様
 
-<%= form_with model: @oder do |f| %>
-
-  <% f.submit "確定" %>
+<%= form_with model: @order do |f| %>
   <%= f.hidden_field :name, value: @order.name %>
   <%= f.hidden_field :address, value: @order.address %>
   <%= f.hidden_field :code, value: @order.code %>
-  <%= f.hidden_field :total_price, valu: @total_price %>
-
+  <%= f.hidden_field :total_price, value: @total_price + 800 %>
+  <%= f.submit "確定" %>
 <% end %>
