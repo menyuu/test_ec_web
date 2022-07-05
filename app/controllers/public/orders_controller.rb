@@ -34,8 +34,6 @@ class Public::OrdersController < ApplicationController
   end
 
   def completion
-    @order = Order.new
-    redirect_to items_path
   end
 
   def create
