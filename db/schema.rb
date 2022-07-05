@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_04_145329) do
+ActiveRecord::Schema.define(version: 2022_07_04_190041) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id", null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2022_07_04_145329) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "code"
     t.index ["customer_id"], name: "index_addresses_on_customer_id"
   end
 
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 2022_07_04_145329) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
@@ -49,10 +51,12 @@ ActiveRecord::Schema.define(version: 2022_07_04_145329) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_deleted", default: false
     t.string "address"
+    t.integer "code"
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
@@ -78,12 +82,13 @@ ActiveRecord::Schema.define(version: 2022_07_04_145329) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.string "order_name", null: false
-    t.string "order_address", null: false
+    t.string "name", null: false
+    t.string "address", null: false
     t.integer "total_price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "payment_method"
+    t.integer "code"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 

@@ -1,7 +1,8 @@
 <h1>確認画面</h1>
 <%= form_with model: @oder do |f| %>
   <%= Order.payment_methods_i18n[@payment] %>
-  <%= @address.customer_id %>
-  <%= @address.name %>様
-  <%= @address.address %>
+  
+  <%= @order.name %>様
+  <%= @order.code %>
+  <%= @order.address %>
 <% end %>
