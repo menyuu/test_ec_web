@@ -49,7 +49,7 @@ class Public::OrdersController < ApplicationController
       order_item.save
     end
     cart_items.destroy_all
-    render :completion
+    redirect_to completion_path
   end
 
   private
