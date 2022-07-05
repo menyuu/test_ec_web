@@ -11,7 +11,7 @@ class Public::OrdersController < ApplicationController
 
   def confirmation
     @order = Order.new(order_params)
-    if @order.payment_method == nil
+    if @order.payment_method == nil || params[:order][:select_address] == nil
       redirect_to cart_items_path
     end
     case params[:order][:select_address]
@@ -28,9 +28,9 @@ class Public::OrdersController < ApplicationController
       @order.customer_id = address.customer_id
     when "3" then
       @order.customer_id = current_customer.id
-    else
-      redirect_to cart_items_path
     end
+    @cart_items = current_customer.cart_items.all
+    @total_price = @cart_items.inject(0){|total, cart_item| total + cart_item.subtotal}
   end
 
   def completion
@@ -43,4 +43,6 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:payment_method, :code, :address, :name)
   end
+  def order_confirmation_params
+    params.require(:order).permit(:)
 end
