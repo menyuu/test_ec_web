@@ -37,7 +37,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order = current_customer.orders.new(order_confirmation_params)
+    @order = current_customer.orders.new(order_params)
     cart_items = current_customer.cart_items.all
     if cart_items.size > 0
       @order.save
@@ -59,9 +59,6 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :code, :address, :name)
-  end
-  def order_confirmation_params
     params.require(:order).permit(:name, :address, :code, :total_price, :payment_method)
   end
 end
