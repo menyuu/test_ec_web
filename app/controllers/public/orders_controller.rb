@@ -39,17 +39,22 @@ class Public::OrdersController < ApplicationController
   def create
     @order = current_customer.orders.new(order_confirmation_params)
     cart_items = current_customer.cart_items.all
-    @order.save
-    cart_items.each do |cart_item|
-      order_item = OrderItem.new
-      order_item.item_id = cart_item.item_id
-      order_item.order_id = @order.id
-      order_item.amount = cart_item.amount
-      order_item.price = cart_item.item.price
-      order_item.save
+    if cart_items.size > 0
+      @order.save
+      cart_items.each do |cart_item|
+        order_item = OrderItem.new
+        order_item.item_id = cart_item.item_id
+        order_item.order_id = @order.id
+        order_item.amount = cart_item.amount
+        order_item.price = cart_item.item.price
+        order_item.save
+      end
+      cart_items.destroy_all
+      redirect_to completion_path
+    else
+      redirect_to root_path
+      flash[:notice] = "カートに商品がありません"
     end
-    cart_items.destroy_all
-    redirect_to completion_path
   end
 
   private
