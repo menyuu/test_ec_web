@@ -1,0 +1,27 @@
+<div>
+  <%= @order.customer.name %>
+</div>
+<div>
+  <%= @order.created_at %>
+</div>
+<div>
+  <%= @order.code %>
+  <%= @order.address %>
+</div>
+<div>
+  <%= @order.name %>
+</div>
+<div>
+  <%= @order.payment_method_i18n %>
+</div>
+<%= form_with model: @order, url: admin_order_path(@order) do |f| %>
+  <%= f.select :order_status, Order.order_statuses.keys.map{ |k| [t("enums.order.order_status.#{k}"),k]} %>
+  <%= f.submit "変更" %>
+<% end %>
+
+<% @order.order_items.each do |order_item| %>
+  <%= form_with model: order_item, url: admin_order_item_path(order_item) do |f| %>
+  <%= f.select :production_status, OrderItem.production_statuses.keys.map{ |k| [t("enums.order_item.production_status.#{k}"),k]} %>
+  <%= f.submit "変更" %>
+  <% end %>
+<% end %>

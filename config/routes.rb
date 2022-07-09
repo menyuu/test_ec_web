@@ -17,6 +17,13 @@ Rails.application.routes.draw do
   devise_for :admins,skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+
+  namespace :admin do
+    get "/" => "homes#top"
+    resources :orders, only: [:show, :update]
+    resources :order_items, only: [:update]
+  end
+
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
