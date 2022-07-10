@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_09_102517) do
+ActiveRecord::Schema.define(version: 2022_07_10_142849) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id", null: false
@@ -61,12 +61,20 @@ ActiveRecord::Schema.define(version: 2022_07_09_102517) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "introduction"
     t.string "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "genre_id", null: false
+    t.index ["genre_id"], name: "index_items_on_genre_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -110,6 +118,7 @@ ActiveRecord::Schema.define(version: 2022_07_09_102517) do
   add_foreign_key "addresses", "customers"
   add_foreign_key "cart_items", "customers"
   add_foreign_key "cart_items", "items"
+  add_foreign_key "items", "genres"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "customers"

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get "/" => "homes#top"
     resources :orders, only: [:show, :update]
     resources :order_items, only: [:update]
+    resources :items, only: [:new, :edit, :create, :update]
   end
 
   devise_for :users
