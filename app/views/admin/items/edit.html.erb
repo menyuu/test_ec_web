@@ -1,3 +1,25 @@
+<h1>商品更新</h1>
+<h2><%= @item.name %></h2>
+<%= form_with model: @item, url: admin_item_path(@item), method: :patch do |f| %>
+<div>
+  <%= f.label :name, "商品" %>
+  <%= f.text_field :name, placeholder: "商品名" %>
+</div>
+<div>
+  <%= f.label :introduction %>
+  <%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %>
+</div>
 
-<h1>Admin::Item#edit</h1>
-<p>Find me in app/views/admin/item/edit.html.erb</p>
+<div>
+  <%= f.label :genre_id, "ジャンル" %>
+  <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), option = { include_blank: "--選択してください--" } %>
+</div>
+
+<div>
+  <%= f.label :price %>
+  <%= f.number_field :price, placeholder: 1000 %>
+</div>
+
+  <%= f.submit "登録" %>
+
+<% end %>

@@ -4,11 +4,18 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-    Item.create(item_params)
-    redirect_to admin_path
+    item = Item.create(item_params)
+    redirect_to item_path(item)
   end
 
   def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+    redirect_to item_path(item)
   end
 
   private
