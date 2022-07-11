@@ -1,2 +1,7 @@
 <h1>Homes#top</h1>
 <p>Find me in app/views/homes/top.html.erb</p>
+<div class="slider">
+  <% @items.each do |item| %>
+    <%= link_to image_tag(item.get_image(500, 500)), item_path(item) %>
+  <% end %>
+</div>

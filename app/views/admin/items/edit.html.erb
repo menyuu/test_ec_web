@@ -10,6 +10,11 @@
   <%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %>
 </div>
 
+<dev>
+  <%= f.label :image %>
+  <%= f.file_field :image, accept: "image/*" %>
+</dev>
+
 <div>
   <%= f.label :genre_id, "ジャンル" %>
   <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name, selected: @item.genre.id) %>
