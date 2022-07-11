@@ -8,7 +8,7 @@
 
     <h4>お届け先</h4>
     <%= f.label :select_address, "住所1" %>
-    <%= f.radio_button :select_address, 1 %><br>
+    <%= f.radio_button :select_address, 1, checked: true %><br>
     <%= current_customer.address %><br>
 
     <%= f.label :select_address, "住所2" %>
