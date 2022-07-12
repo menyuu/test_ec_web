@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+
+
+.slider {
+  margin:0 auto;
+}
+
+.slider img {
+    max-width: 100%;
+    height: 500px;
+    width: auto;
+    margin: 0 auto;
+}
+
+.slider .slick-prev
+{
+    /* デフォルトでは-25px(= スライダーの外側) */
+    left: 31%;
+}
+.slider .slick-next
+{
+    /* デフォルトでは-25px(= スライダーの外側) */
+    right: 31%;
+}
+
+.slider .slick-prev,
+.slider .slick-next
+{
+    /* スライド画像の後ろに隠れないようにする */
+    z-index: 100;
+}
