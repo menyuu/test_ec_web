@@ -3,8 +3,11 @@ $(document).on('turbolinks:load', function() {
   dots: true,
   arrows: true,
   autoplay: true,
-  autoplaySpeed: 4000,
+  autoplaySpeed: 1000,
   dots: true,
+  pauseOnFocus: false,
+  pauseOnHover: false,
+  pauseOnDotsHover: false
  });
 });
 

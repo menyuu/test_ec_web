@@ -29,12 +29,12 @@
 .slider .slick-prev
 {
     /* デフォルトでは-25px(= スライダーの外側) */
-    left: 31%;
+    left: 15%;
 }
 .slider .slick-next
 {
     /* デフォルトでは-25px(= スライダーの外側) */
-    right: 31%;
+    right: 15%;
 }
 
 .slider .slick-prev,
