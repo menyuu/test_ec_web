@@ -49,8 +49,8 @@ class Public::OrdersController < ApplicationController
         order_item.price = cart_item.item.price
         order_item.save
       end
-      unless (current_customer.code && current_customer.address && current_customer.name) or
-        (current_customer.addresses.find_by(code: params[:order][:code], address: params[:order][:address], name: params[:address][:name]))
+      unless (current_customer.code == params[:order][:code] && current_customer.address == params[:order][:address] && current_customer.name == params[:address][:name]) or
+        (current_customer.addresses.find_by(code: @order.code, address: @order.address, name: @order.name))
         address = Address.new
         address.code = @order.code
         address.address = @order.address
