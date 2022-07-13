@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get "orders/completion", as: "completion"
     get "orders/:id/confirmation" => "orders#confirmation", as: "confirmation"
     resources :orders, only: [:new, :index, :show, :create]
-    resources :addresses, only: [:index, :show, :new, :edit]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 
   devise_for :admins,skip: [:registrations, :passwords], controllers: {
