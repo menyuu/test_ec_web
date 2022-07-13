@@ -1,4 +1,3 @@
-
 Rails.application.routes.draw do
   root to: "homes#top"
   devise_for :customers,skip: [:passwords], controllers: {
@@ -13,7 +12,7 @@ Rails.application.routes.draw do
     get "orders/completion", as: "completion"
     get "orders/:id/confirmation" => "orders#confirmation", as: "confirmation"
     resources :orders, only: [:new, :index, :show, :create]
-    resources :address, only: [:index, :show, :new, :edit]
+    resources :addresses, only: [:index, :show, :new, :edit]
   end
 
   devise_for :admins,skip: [:registrations, :passwords], controllers: {

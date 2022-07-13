@@ -24,6 +24,7 @@
     <%= link_to "カート", cart_items_path %>
     <%= link_to "顧客一覧", admin_path %>
     <%= link_to "商品追加", new_admin_item_path %>
+    <%= link_to "住所一覧", addresses_path %>
     <%= link_to "トップ", root_path %>
     <% if customer_signed_in? %>
       <h1><%= current_customer.id %></h1>
